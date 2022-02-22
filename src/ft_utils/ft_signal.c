@@ -6,7 +6,7 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 18:00:32 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/16 02:58:11 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/20 14:01:20 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,15 @@ void	ft_echoctl_off(void)
 	}
 }
 
+void	ft_set_signal(int sig, void (*cmd)(int))
+{
+	if (signal(sig, cmd) == SIG_ERR)
+		ft_fail("signal error: ");
+}
+
 void	ft_signal_init(void)
 {
-	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-		ft_fail("signal SIGQUIT error: ");
-	if (signal(SIGINT, ft_handler_sigint) == SIG_ERR)
-		ft_fail("signal SIGINT error: ");
+	ft_set_signal(SIGQUIT, SIG_IGN);
+	ft_set_signal(SIGINT, ft_handler_sigint);
+	signal(SIGTERM, SIG_IGN);
 }

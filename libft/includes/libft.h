@@ -6,7 +6,7 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 20:00:51 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/18 12:21:03 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/20 11:05:41 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ char		*ft_itoa_base(unsigned long n, int base);
 char		*ft_uitoa(unsigned int nbr);
 int			ft_atoi(const char *str);
 int			ft_atoi_num(const char *str, int *nbr);
+long		ft_atol(const char *str);
 double		ft_atod(const char *str);
 
 void		ft_bzero(void *s, size_t n);
@@ -138,14 +139,19 @@ void		ft_tabiter(char **tab, void (*f)(char *));
 char		**ft_tabdup(char **tab);
 char		**ft_tabcat(char **dest, char **src);
 char		**ft_tabjoin(char **tab1, char **tab2);
+char		**ft_list_to_tab(t_list *lst);
 
-void		ft_putchar_fd(int fd, char c);
+int			ft_putchar_fd(int fd, char c);
 int			ft_putchar(char c);
+int			ft_putnchar_fd(int fd, char c, int n);
 int			ft_putnchar(char c, int n);
-void		ft_putnbr_fd(int fd, int n);
-int			ft_putnbr_base(unsigned long n, char *base);
-void		ft_putstr_fd(int fd, char *str);
+int			ft_putstr_fd(int fd, char *str);
 int			ft_putstr(char *str);
-void		ft_putendl_fd(int fd, char *str);
+int			ft_putendl_fd(int fd, char *str);
+int			ft_putendl(char *str);
+int			ft_putnbr_fd(int fd, int n);
+int			ft_putnbr(int n);
+int			ft_putnbr_base_fd(int fd, unsigned long n, char *base);
+int			ft_putnbr_base(unsigned long n, char *base);
 
 #endif

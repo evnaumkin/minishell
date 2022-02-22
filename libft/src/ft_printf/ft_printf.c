@@ -6,13 +6,13 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 13:00:26 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/06 14:27:02 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/19 19:15:53 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static t_data_flag	*ft_init_data_flag(t_data_flag *data_flag)
+static t_data_flag	*ft_init_data_flag(t_data_flag *data_flag, int fd)
 {
 	data_flag->type = 0;
 	data_flag->pos = -1;
@@ -30,10 +30,11 @@ static t_data_flag	*ft_init_data_flag(t_data_flag *data_flag)
 	data_flag->sign = 0;
 	data_flag->is_zero = 0;
 	data_flag->retlen = 0;
+	data_flag->fd = fd;
 	return (data_flag);
 }
 
-static int	ft_print_str(char *str, va_list args)
+static int	ft_print_str(int fd, char *str, va_list args)
 {
 	t_data_flag	*data_flag;
 	int			i;
@@ -47,10 +48,10 @@ static int	ft_print_str(char *str, va_list args)
 	while (str[i])
 	{
 		if (str[i] != '%')
-			ret += ft_putchar(str[i]);
+			ret += ft_putchar_fd(fd, str[i]);
 		else if (str[i] == '%' && str[i + 1])
 		{
-			ft_init_data_flag(data_flag);
+			ft_init_data_flag(data_flag, fd);
 			data_flag->pos = i + 1;
 			ft_parse_str(str, data_flag, args);
 			ret += data_flag->retlen;
@@ -75,7 +76,26 @@ int	ft_printf(const char *format, ...)
 		return (-1);
 	ret = 0;
 	va_start(args, format);
-	ret = ft_print_str((char *)str, args);
+	ret = ft_print_str(STDOUT, (char *)str, args);
+	va_end(args);
+	free((char *)str);
+	return (ret);
+}
+
+int	ft_fprintf(int fd, const char *format, ...)
+{
+	va_list		args;
+	const char	*str;
+	size_t		ret;
+
+	if (fd < 0 || format == NULL)
+		return (0);
+	str = ft_strdup(format);
+	if (str == NULL)
+		return (-1);
+	ret = 0;
+	va_start(args, format);
+	ret = ft_print_str(fd, (char *)str, args);
 	va_end(args);
 	free((char *)str);
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 13:01:45 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/18 11:07:21 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/19 18:37:52 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_data_flag
 	int		dash;
 	int		is_zero;
 	int		pos;
+	int		fd;
 	size_t	retlen;
 }		t_data_flag;
 
@@ -64,6 +65,7 @@ void	ft_output_ptr(t_data_flag *data_flag, char *str);
 void	ft_output_hex(t_data_flag *data_flag, char *str);
 void	ft_output_percent(t_data_flag *data_flag, char c);
 
+int		ft_fprintf(int fd, const char *format, ...);
 int		ft_printf(const char *format, ...);
 
 #endif

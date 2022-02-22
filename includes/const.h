@@ -6,7 +6,7 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 21:48:13 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/18 11:02:21 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/20 14:46:27 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 #  define BUFFER_SIZE 4096
 # endif
 
-# define PROMPT "minishell$ "
-# define ERR_PROMPT "minishell: "
+# define PROMPT "msh-1.0$ "
+# define ERR_PROMPT "msh: "
 
 # define EXIT_SUCCESS 			0
 # define EXIT_FAILURE			1
+# define EXIT_BUILTIN			1
 /* A file to be executed was found, but it was not an executable utility. */
 # define EXIT_NOTEXECUTABLE 	126
 /* A utility to be executed was not found. */
@@ -41,43 +42,45 @@
 # define ERR_CODE_SLEEP 		7
 # define ERR_CODE_TIMEOFDAY 	8
 
-# define ERR_MSG_NUMBER_AGRS		"Invalid number of arguments"
-# define ERR_MSG_INVALID_AGRS		"Invalid arguments"
-# define ERR_MSG_VALUE_AGRS			"Invalid value of arguments"
-# define ERR_MSG_TOO_MANY_ARGS		"Too many arguments"
-# define ERR_MSG_MALLOC 			"Error malloc"
-# define ERR_MSG_UNDEFINED			"Error undefined behavior"
+# define ERR_MSG_MALLOC 			"error malloc"
+# define ERR_MSG_UNDEFINED			"error undefined behavior"
 # define ERR_MSG_USAGE 				"minishell without arguments"
-# define ERR_MSG_NO_FILE_OR_DIR 	"No such file or directory"
-# define ERR_MSG_PERMISSION_DENIED 	"Permission denied"
-# define ERR_MSG_CANNOT_READ 		"Cannot read file."
-# define ERR_MSG_CANNOT_DELETE 		"Cannot delete file."
-
-# define ERR_MSG_QUOTES				"Quotes not paired"
-# define ERR_MSG_COMMANDS			"Command not found"
-# define ERR_MSG_IDENTIFIER			"Not a valid identifier"
-# define ERR_MSG_NUMERIC			"Numeric arguments required"
-# define ERR_MSG_PERMISSIONS		"Permission denied"
+# define ERR_MSG_NUMBER_AGRS		"invalid number of arguments"
+# define ERR_MSG_INVALID_AGRS		"invalid arguments"
+# define ERR_MSG_VALUE_AGRS			"invalid value of arguments"
+# define ERR_MSG_SYNTAX_TOKEN		"invalid syntax at token"
+# define ERR_MSG_NO_FILE_OR_DIR 	"no such file or directory"
+# define ERR_MSG_NOT_DIR	        "Not a directory"
+# define ERR_MSG_PERMISSION_DENIED 	"permission denied"
+# define ERR_MSG_CANNOT_READ 		"cannot read file."
+# define ERR_MSG_CANNOT_DELETE 		"cannot delete file."
+# define ERR_MSG_QUOTES				"quotes not paired"
+# define ERR_MSG_COMMANDS			"command not found"
+# define ERR_MSG_IDENTIFIER			"not a valid identifier"
+# define ERR_MSG_TOO_MANY_ARGS		"too many arguments"
+# define ERR_MSG_NUMERIC			"numeric arguments required"
+# define ERR_MSG_SYNTAX_ERROR       "syntax error near unexpected token"
 
 # define TOKEN_SPACE				" "
 # define TOKEN_TAB					"\t"
 # define TOKEN_NEWLINE				"\n"
 # define TOKEN_ASSIGN				'='
+# define TOKEN_BACKSLASH			"\\"
 # define TOKEN_SQUOTE				"\'"
 # define TOKEN_DQUOTE				"\""
 # define TOKEN_PIPE					"|"
 # define TOKEN_SEMI				    ";"
-# define TOKEN_LESS					'<'
-# define TOKEN_GREAT				'>'
+# define TOKEN_LESS					"<"
+# define TOKEN_GREAT				">"
 # define TOKEN_OR_IF				"||"
 # define TOKEN_AND_IF				"&&"
 # define TOKEN_DSEMI				";;"
-# define TOKEN_DLESS				'<<'
-# define TOKEN_DGREAT				'>>'
-# define TOKEN_LESSAND				'<&'
-# define TOKEN_GREATAND 			'>&'
-# define TOKEN_LESSGREAT			'<>'
-# define TOKEN_DLESSDASH			'<<-'
-# define TOKEN_CLOBBER				'>|'
+# define TOKEN_DLESS				"<<"
+# define TOKEN_DGREAT				">>"
+# define TOKEN_LESSAND				"<&"
+# define TOKEN_GREATAND 			">&"
+# define TOKEN_LESSGREAT			"<>"
+# define TOKEN_DLESSDASH			"<<-"
+# define TOKEN_CLOBBER				">|"
 
 #endif

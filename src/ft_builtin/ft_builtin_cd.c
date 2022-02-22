@@ -6,11 +6,11 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:57:57 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/16 02:32:27 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/19 21:27:10 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "minishell.h"
+#include "minishell.h"
 
 static int	ft_check_env(char *name, char*path)
 {

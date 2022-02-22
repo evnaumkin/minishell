@@ -6,7 +6,7 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 16:54:34 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/14 23:01:00 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/19 21:11:48 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,25 @@ int	ft_exit_error(void *ptr, int ret)
 {
 	rl_clear_history();
 	ft_memdel(ptr);
-	ft_env_clear(&g_params.env, &ft_memdel);
+	ft_free();
+	return (ret);
+}
+
+int	ft_get_errcode(void)
+{
+	return (g_params.exit_status);
+}
+
+void	ft_set_errcode(int ret)
+{
+	g_params.exit_status = ret;
+}
+
+int	ft_syntax_error(int ret, char *str)
+{
+	ft_fprintf(STDERR, "%s%s\n", ERR_PROMPT, str);
+	ft_set_errcode(ret);
+	//ft_free_split(get_lex_toks());
 	return (ret);
 }
 
@@ -49,12 +67,8 @@ void	ft_fail(char *str)
 		else
 			ft_putendl_fd(STDERR, str);
 	}
+	ft_free();
 	exit(EXIT_FAILURE);
-}
-
-int	ft_get_errcode(void)
-{
-	return (0);
 }
 
 int	ft_exit_output(char **args)

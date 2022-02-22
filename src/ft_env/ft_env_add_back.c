@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check.c                                         :+:      :+:    :+:   */
+/*   ft_env_add_back.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 05:45:11 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/13 01:15:59 by llornel          ###   ########.fr       */
+/*   Created: 2022/02/20 00:39:09 by llornel           #+#    #+#             */
+/*   Updated: 2022/02/20 00:39:17 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	ft_check_quotes(char *str)
+void	ft_env_add_back(t_env **env, t_env *new)
 {
-	char *tmp;
-	int	i;
+	t_env	*last;
 
-	i = 0;
-    tmp = str;
-	while (*tmp)
+	if (env == NULL)
+		return ;
+	if (*env)
 	{
-		if (*tmp == '\"')
-			tmp = ft_strchr(tmp + 1, '\"');
-		if (tmp == NULL)
-			return (false);
-		if (*tmp == '\'')
-			tmp = ft_strchr(tmp + 1, '\'');
-		if (tmp == NULL)
-			return (false);
-		i++;
+		last = ft_env_last(*env);
+		last->next = new;
 	}
-	return (true);
+	else
+		*env = new;
 }

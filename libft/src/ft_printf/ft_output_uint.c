@@ -6,7 +6,7 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 12:31:27 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/06 15:53:11 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/19 18:48:12 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@ static void	ft_print_str(t_data_flag *data_flag, char *str)
 {
 	if (!data_flag->is_zero || !data_flag->is_precision
 		|| data_flag->precision)
-		data_flag->retlen += ft_putstr(str);
+		data_flag->retlen += ft_putstr_fd(data_flag->fd, str);
 	else if (data_flag->is_width && data_flag->zero)
-		data_flag->retlen += ft_putchar('0');
+		data_flag->retlen += ft_putchar_fd(data_flag->fd, '0');
 	else if (data_flag->is_width && data_flag->width)
-		data_flag->retlen += ft_putchar(' ');
+		data_flag->retlen += ft_putchar_fd(data_flag->fd, ' ');
 }
 
 static void	ft_output_left(t_data_flag *data_flag, char *str)
 {
 	if (data_flag->zero)
 	{
-		data_flag->retlen += ft_putnchar('0', data_flag->pad_precision);
-		data_flag->retlen += ft_putnchar('0', data_flag->pad_width);
+		data_flag->retlen += ft_putnchar_fd(data_flag->fd, '0', data_flag->pad_precision);
+		data_flag->retlen += ft_putnchar_fd(data_flag->fd, '0', data_flag->pad_width);
 		ft_print_str(data_flag, str);
 	}
 	else
 	{
-		data_flag->retlen += ft_putnchar('0', data_flag->pad_precision);
+		data_flag->retlen += ft_putnchar_fd(data_flag->fd, '0', data_flag->pad_precision);
 		ft_print_str(data_flag, str);
-		data_flag->retlen += ft_putnchar(' ', data_flag->pad_width);
+		data_flag->retlen += ft_putnchar_fd(data_flag->fd, ' ', data_flag->pad_width);
 	}
 }
 
@@ -43,14 +43,14 @@ static void	ft_output_right(t_data_flag *data_flag, char *str)
 {
 	if (data_flag->zero)
 	{
-		data_flag->retlen += ft_putnchar('0', data_flag->pad_precision);
-		data_flag->retlen += ft_putnchar('0', data_flag->pad_width);
+		data_flag->retlen += ft_putnchar_fd(data_flag->fd, '0', data_flag->pad_precision);
+		data_flag->retlen += ft_putnchar_fd(data_flag->fd, '0', data_flag->pad_width);
 		ft_print_str(data_flag, str);
 	}
 	else
 	{
-		data_flag->retlen += ft_putnchar(' ', data_flag->pad_width);
-		data_flag->retlen += ft_putnchar('0', data_flag->pad_precision);
+		data_flag->retlen += ft_putnchar_fd(data_flag->fd, ' ', data_flag->pad_width);
+		data_flag->retlen += ft_putnchar_fd(data_flag->fd, '0', data_flag->pad_precision);
 		ft_print_str(data_flag, str);
 	}
 }

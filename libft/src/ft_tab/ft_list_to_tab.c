@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_list_to_tab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/06 17:46:04 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/14 02:20:40 by llornel          ###   ########.fr       */
+/*   Created: 2022/02/20 04:42:07 by llornel           #+#    #+#             */
+/*   Updated: 2022/02/20 04:56:45 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	ft_free_set(void **dst, void *src)
+char	**ft_list_to_tab(t_list *lst)
 {
-	//free(*dst);
-	ft_memdel(*dst);
-	*dst = src;
-}
+	char	**tab;
+	int		i;
 
-void	ft_free(void)
-{
-	ft_env_clear(&g_params.env, &ft_memdel);
+	tab = (char **)malloc(sizeof(char *) * (ft_lstsize(lst) + 1));
+	if (tab == NULL)
+		return (NULL);
+	i = 0;
+	while (lst)
+	{
+		tab[i] = ft_strdup(lst->content);;
+		lst = lst->next;
+		i++;
+	}
+	tab[i] = NULL;
+	return (tab);
 }

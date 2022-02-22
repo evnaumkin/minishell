@@ -6,7 +6,7 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 14:31:51 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/06 14:29:37 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/19 18:47:56 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	ft_output_str(t_data_flag *data_flag, char *str)
 	{
 		i = 0;
 		while (i < strsize)
-			data_flag->retlen += ft_putchar(str[i++]);
-		data_flag->retlen += ft_putnchar(' ', data_flag->pad_width);
+			data_flag->retlen += ft_putchar_fd(data_flag->fd, str[i++]);
+		data_flag->retlen += ft_putnchar_fd(data_flag->fd, ' ', data_flag->pad_width);
 	}
 	else
 	{
-		data_flag->retlen += ft_putnchar(' ', data_flag->pad_width);
+		data_flag->retlen += ft_putnchar_fd(data_flag->fd, ' ', data_flag->pad_width);
 		i = 0;
 		while (i < strsize)
-			data_flag->retlen += ft_putchar(str[i++]);
+			data_flag->retlen += ft_putchar_fd(data_flag->fd, str[i++]);
 	}
 }

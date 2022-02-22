@@ -6,7 +6,7 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 22:40:53 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/15 03:38:47 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/20 12:31:26 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	ft_params_init(char **envp)
 	g_params.sigint = 0;
 	g_params.sigquit = 0;
 	g_params.pid = 0;
-	//ft_env_remove(g_params.env, "OLDPWD");
 	ft_shlvl_inc();
+	ft_env_remove(g_params.env, "OLDPWD");
 	ft_env_set(g_params.env, "OLDPWD", g_params.oldpwd);
 	ft_env_set(g_params.env, "PWD", g_params.pwd);
 	return (EXIT_SUCCESS);

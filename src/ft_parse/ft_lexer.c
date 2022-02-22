@@ -6,7 +6,7 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 18:51:21 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/14 21:59:10 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/20 11:12:02 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,39 @@ void	ft_lstprint(void *ptr)
 
 int	ft_lexer(char *str)
 {
-	//char	**tokens;
+	char	**tokens;
 	//t_list	*listtok;
 	int		ret = 0;
 
-	if (str == NULL)
-		ft_fail("ft_lexer : Invalid argument");
-	if (ft_strisempty(str))
-	{
-		g_params.listtok = ft_lstnew(ft_strdup(str));
-		return (ERR_CODE_INPUT_EMPTY);
-	}
+	// if (str == NULL)
+	// 	ft_fail("ft_lexer : Invalid argument");
+	//ft_printf("str=%s\n", str);
+	if (!ft_check_quotes(str))
+		return (ft_syntax_error(EXIT_SYNTAX_ERROR, ERR_MSG_SYNTAX_TOKEN));
+	// if (ft_strisempty(str))
+	// {
+	// 	g_params.listtok = ft_lstnew(ft_strdup(str));
+	// 	return (ERR_CODE_INPUT_EMPTY);
+	// }
 	//listtok = ft_parse_str(str, "\'\"\t\n\v\f\r <>|");
-	g_params.listtok = ft_parse_token(str, "|&;<>(){}$`\\\"\' \t");
-	ft_lstiter(g_params.listtok, &ft_lstprint);
+	//g_params.listtok = ft_parse_token(str, "|&;<>()$`\\\"\' \t");
+
+	//g_params.listtok = ft_parse_token(str, "|&<>\"\' \t");
+	//ft_lstiter(g_params.listtok, &ft_lstprint);
+	//tokens = ft_list_to_tab(g_params.listtok);
+
+	tokens = ft_split_sep(str, " \t\n");
+	//ft_printf("tokens[0]=%s\n", tokens[0]);
+	if (ft_is_builtin(tokens[0]))
+	{
+		//ft_printf("ft_is_builtin");
+		ret = ft_exec_builtin(tokens);
+	}
+	//ret = ft_builtin_echo(tokens);
+	//ret = ft_builtin_exit(tokens);
+
+	ft_tabfree(tokens);
+
 
 	// if (!ft_check_quotes(*str) && set_rl(input, QUOTES, STDERR_FILENO, false))
 	// 	continue ;

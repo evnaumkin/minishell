@@ -6,7 +6,7 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 20:10:24 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/16 02:53:49 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/20 13:03:31 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	main(int argc, char **argv, char **envp)
 	mode = 0;
 	if (argc != 1)
 	{
+		//ft_printf("Usage: Minishell does not take any argument\n");
+		//exit(FAILURE);
 		ret = ft_handle_args(argc, argv);
 		if (ret != EXIT_SUCCESS)
 			return (ret);
@@ -78,6 +80,8 @@ int	main(int argc, char **argv, char **envp)
 		ret = ft_handle_cmd(argv[2]);
 	else
 		ret = ft_handle_test(argv[2]);
+	ft_set_errcode(ret);
+	ret	= ft_get_errcode();
 	ft_free();
 	return (ret);
 }

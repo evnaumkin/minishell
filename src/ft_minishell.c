@@ -6,7 +6,7 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 17:28:29 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/14 23:05:39 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/20 04:37:03 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_readline(char *name)
 		input = readline(name);
 		if (input == NULL)
 			return (ft_exit_error((void *)input, EXIT_CTRL_D));
-		if (ft_strlen(input) == 0)
+		if (ft_strlen(input) == 0 || ft_strisempty(input))
 			continue ;
 		add_history(input);
 		ret = ft_lexer(input);
@@ -33,18 +33,6 @@ int	ft_readline(char *name)
 		ft_lstclear(&g_params.listtok, &ft_memdel);
 	}
 	return (EXIT_SUCCESS);
-}
-
-
-
-void	ft_env_sort_print(t_env	*env)
-{
-	char	**tabenv;
-
-	tabenv = ft_env_to_tab(env);
-	ft_tabsort(tabenv);
-	ft_tabprint(tabenv);
-	ft_tabfree(tabenv);
 }
 
 int	ft_minishell(int argc, char **argv, char **envp)

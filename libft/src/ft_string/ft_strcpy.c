@@ -6,7 +6,7 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 13:47:10 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/18 12:12:19 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/19 21:21:57 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strcpy(char *dest, const char *src)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (src[i])

@@ -6,7 +6,7 @@
 #    By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/31 20:46:46 by llornel           #+#    #+#              #
-#    Updated: 2022/02/18 12:33:16 by llornel          ###   ########.fr        #
+#    Updated: 2022/02/20 11:06:09 by llornel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRC_FILE		=   $(ISCHECK_PATH)/ft_isalpha.c \
   					$(COMMON_PATH)/ft_nbrlen.c \
 					$(COMMON_PATH)/ft_maths.c \
 					$(CNVRT_PATH)/ft_atoi.c \
+					$(CNVRT_PATH)/ft_atol.c \
 					$(CNVRT_PATH)/ft_atod.c \
 					$(CNVRT_PATH)/ft_itoa.c \
 					$(CNVRT_PATH)/ft_uitoa.c \
@@ -96,6 +97,7 @@ SRC_FILE		=   $(ISCHECK_PATH)/ft_isalpha.c \
 					$(TAB_PATH)/ft_tabcat.c \
 					$(TAB_PATH)/ft_tabjoin.c \
 					$(TAB_PATH)/ft_tabiter.c \
+					$(TAB_PATH)/ft_list_to_tab.c \
 					$(OUTPUT_PATH)/ft_putchar_fd.c \
 					$(OUTPUT_PATH)/ft_putnbr_fd.c \
 					$(OUTPUT_PATH)/ft_putnbr_base.c \
@@ -152,21 +154,15 @@ LIBR 			= ranlib
 RM				= rm -f
 NORM			= norminette -R CheckForbiddenSourceHeader
 
-#all: 			$(OBJ_PATH) $(NAME)
-
-#$(OBJ_PATH):
-#				mkdir $@
-
 %.o:			%.c $(HEADER) Makefile
-#$(OBJS) : $(OBJ_PATH)/%.o: %.c $(HEADER) Makefile
-				${CC} $(CFLAGS) -I $(INCLUDES) $(DFLAGS) -c $< -o $(<:.c=.o)
+				${CC} $(CFLAGS) -I $(INCLUDES) -c $< -o $(<:.c=.o)
 
 
 ${NAME}:		${OBJS}
 				${LIBC} ${NAME} ${OBJS}
 				${LIBR} ${NAME}
 
-#all:			${NAME}
+all:			${NAME}
 
 clean:
 				${RM} ${OBJS}
