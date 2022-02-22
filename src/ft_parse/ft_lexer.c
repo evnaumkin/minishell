@@ -6,7 +6,7 @@
 /*   By: llornel <llornel@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 18:51:21 by llornel           #+#    #+#             */
-/*   Updated: 2022/02/20 11:12:02 by llornel          ###   ########.fr       */
+/*   Updated: 2022/02/23 01:44:20 by llornel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int	ft_lexer(char *str)
 	// 	g_params.listtok = ft_lstnew(ft_strdup(str));
 	// 	return (ERR_CODE_INPUT_EMPTY);
 	// }
+
+
 	//listtok = ft_parse_str(str, "\'\"\t\n\v\f\r <>|");
 	//g_params.listtok = ft_parse_token(str, "|&;<>()$`\\\"\' \t");
 
